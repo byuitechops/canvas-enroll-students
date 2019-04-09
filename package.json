@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/byuitechops/canvas-enroll-students#readme",
   "dependencies": {
-    "canvas-api-wrapper": "^3.3.5"
+    "canvas-api-wrapper": "^3.3.5",
+    "d3-dsv": "^1.1.1"
   }
 }
