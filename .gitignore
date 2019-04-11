@@ -1,2 +1,4 @@
 /node_modules
-early_childhood.csv
+/reports
+*.csv
+!test.csv
