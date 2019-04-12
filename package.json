@@ -1,6 +1,6 @@
 {
   "name": "canvas-enroll-students",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A repo for enrolling a student or csv of students into a course",
   "main": "index.js",
   "scripts": {
