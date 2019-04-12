@@ -4,7 +4,9 @@
   "description": "A repo for enrolling a student or csv of students into a course",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .\\bin\\bin.js",
+    "version": "yo byui:release"
   },
   "repository": {
     "type": "git",
