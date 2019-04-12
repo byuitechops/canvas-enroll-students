@@ -1,1 +1,4 @@
 /node_modules
+/reports
+*.csv
+!test.csv
