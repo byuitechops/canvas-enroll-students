@@ -37,7 +37,6 @@ async function getInput() {
 }
 
 async function getOutput(output) {
-    console.log(output);
     return output;
 }
 

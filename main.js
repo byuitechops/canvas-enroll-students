@@ -3,7 +3,8 @@ const canvas = require('canvas-api-wrapper'),
     moment = require('moment'),
     fs = require('fs');
 
-var sectionId = '';
+let sectionId;
+let studentCount;
 
 var goodEnrollments = [];
 var badEnrollments = [];
@@ -12,7 +13,7 @@ var badEnrollments = [];
  * Code that sets up and makes the PUT reuqest. 
  * Reports errors in error badEnrollments var.
  **************************************************/
-function enrollStudent(student, callback) {
+function enrollStudent(student, index, callback) {
     var enrollmentObj = {
         enrollment: {
             user_id: `sis_user_id:${student['SIS User ID']}`,
@@ -25,7 +26,7 @@ function enrollStudent(student, callback) {
     // Course has 0 enrollments and is ready to recieve them
     canvas.post(`/api/v1/sections/${sectionId}/enrollments`, enrollmentObj, (err) => {
         if (err) {
-            console.log(err);
+            console.log(`${student['Student']} not enrolled (${index}/${studentCount}). ${(index / studentCount * 100).toFixed()}% completed.`);
             badEnrollments.push({
                 student: student,
                 err: err.message,
@@ -34,10 +35,9 @@ function enrollStudent(student, callback) {
             callback(null);
             return;
         }
-        console.log(`${student['Student']} has been enrolled in section.`);
+        console.log(`${student['Student']} has been enrolled (${index}/${studentCount}). ${(index / studentCount * 100).toFixed()}% completed.`);
         goodEnrollments.push({
             student: student,
-            err: err.message,
             message: 'Successful Enrollment'
         });
         callback(null);
@@ -46,12 +46,16 @@ function enrollStudent(student, callback) {
 
 module.exports = function (input) {
     sectionId = input.sectionId;
+    studentCount = input.students.length;
+
+    // Uncomment this line if running test.
+    // input.students = input.students.slice(0, 11);
 
     /**************************************************
      * Code that writes out report files. Also control-
      * flow, only 25 concurrent processes.
      **************************************************/
-    asyncLib.eachLimit(input.students, 25, enrollStudent, (err) => {
+    asyncLib.eachOfLimit(input.students, 25, enrollStudent, (err) => {
         if (err) {
             console.log(err);
             return;
