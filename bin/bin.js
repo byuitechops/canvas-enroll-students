@@ -19,10 +19,10 @@ async function getInput() {
         }, {
             type: 'input',
             name: 'csvPath',
-            message: 'Relative path to student CSV list',
+            message: 'Path to student CSV list',
             suffix: ':',
             default: './csv/test.csv',
-            validate: input => { return fs.existsSync(input) ? true : false; }
+            validate: input => { return fs.existsSync(path.resolve(input)) ? true : false; }
         }
     ];
 
