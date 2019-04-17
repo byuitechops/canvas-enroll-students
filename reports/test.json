@@ -1,0 +1,23 @@
+{
+    "success": [
+        {
+            "student": {
+                "Student": "Ima Tryle",
+                "SIS User ID": "ImaTryle101",
+                "SIS Login ID": "ImaTryle"
+            },
+            "message": "Successful Enrollment"
+        }
+    ],
+    "failure": [
+        {
+            "student": {
+                "Student": "Alice Tryle",
+                "SIS User ID": "AliceTryle101",
+                "SIS Login ID": "AliceTryle"
+            },
+            "err": "POST ... failed with: STATUS CODE ...",
+            "message": "Error Enrolling"
+        }
+    ]
+}
