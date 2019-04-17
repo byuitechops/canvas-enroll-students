@@ -2,49 +2,66 @@
 
 ## Description 
 
+This tool can be used as to enroll a list of students into a Canvas section (via CSV and Section #).
 
 ## How to Install
 
-Standard Install
-
-1. Clone this repository:
-    ```bash
-    git clone (repository Link).git
-    ```
-1. Step into the folder that was just created 
-    ```bash
-    cd ./Canvas Enroll Students
-    ```
-1. To install dependencies, run:
-    ```bash
-    npm i
-    ```
-
-1. To initialize the program, run:
-    ```bash
-    npm start
-    ```
-<!--- TODO: Add Additional Installation/Set Up Instructions, then delete this comment  --->
+Standard Install:
+```
+$ git clone https://github.com/byuitechops/canvas-enroll-students.git
+$ cd ./canvas-enroll-students
+$ npm i
+```
 
 ## How to Use
-Run the following command:
+- Run the following command:
 ```bash
-node (main)
+$ npm start
 ```
+- You will receive the following prompts:
+1. **Target Canvas course section ID number**: <_Section ID number_>
+2. **Path to student CSV list**: <_CSV filepath_> Your CSV should follow the syntax:
+  ```csv
+  Student,SIS User ID,SIS Login ID
+  Alice Tryle,AliceTryle101,AliceTryle
+  Bob Tryle,BobTryle101,BobTryle
+  Charli Tryle,CharliTryle101,CharliTryle
+  David Tryle,DavidTryle101,DavidTryle
+  Eugene Tryle,EugeneTryle101,EugeneTryle
+  Faith Tryle,FaithTryle101,FaithTryle
+  Guy Tryle,GuyTryle101,GuyTryle
+  Hope Tryle,HopeTryle101,HopeTryle
+  Ima Tryle,ImaTryle101,ImaTryle
 
-<!--- TODO: Add Additional Information on How to use the tool/module, then delete this comment  --->
+  ```
+  **Note**: *SIS User ID is a student's I-Number*
 
-## How to Build
-From within the folder where the project resides, run the following:
-```bash
-npm run build
-```
+- A report will be written to **./reports/SECTION_ID_NUMBER-enrollments-YYYYMMDD_KKMM.json** with the following syntax:
+  ```json
+  {
+      "success": [
+          {
+              "student": {
+                  "Student": "Ima Tryle",
+                  "SIS User ID": "ImaTryle101",
+                  "SIS Login ID": "ImaTryle"
+              },
+              "message": "Successful Enrollment"
+          }
+      ],
+      "failure": [
+          {
+              "student": {
+                  "Student": "Alice Tryle",
+                  "SIS User ID": "AliceTryle101",
+                  "SIS Login ID": "AliceTryle"
+              },
+              "err": "POST ... failed with: STATUS CODE ...",
+              "message": "Error Enrolling"
+          }
+      ]
+  }
+  ```
 
-## How to Test
-From within the folder where the project resides, run the following:
-```bash
-npm test
-```
+
 <sub>This document modified: 2019 April 09, 02:30 PM using document generator version: 1.0.0<sub>
-
-<!--- TODO: Review the readme for accuracy, then delete this comment--->

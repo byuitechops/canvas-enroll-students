@@ -1,51 +1,18 @@
 # Project Capture Document for Canvas Enroll Students
 #### *Author: Seth Bolander*
-#### *Stakeholder(s): Josh McKinney*
+#### *Stakeholder(s): Arlen Wilcock*
 #### *Date: 2019 April 09, 02:30 PM*
 
 ## Background
 
-<!-- 
-
-Explain the context of the problem.
-Explain key terms/words, words that may be unfamiliar to a new hire.
-
-
-Do Example: 
-    
-    Corey and his team have been manually going through the html for all images in canvas and entering alt image text.
-    This has been very time consuming.
-
-Don't Example:
-
-
-    Without project templates, we have been left with readmes that share all different kinds of data, and some of them were missing key
-    points of data. Additionally, we have no standard for code templates. We don't want to add a lot of overhead to setting up a project
-    with templates and code setup.
-
--->
+Students need to be enrolled into courses for various purposes. The initial need was that importing a gradebook CSV into Canvas' gradebook requires the students be enrolled in the courses beforehand.
+*Note: This project will only deal with the enrolling part of projects that require students to be enrolled into Canvas courses. It would not handle gradebooks or other project outcomes beside enrollment.*
 
 -----
 
 ## Definition of Done
-<!-- 
 
-What is/are the project outcome(s)?
-("Can you give me one sentence describing what you want done?")
-We are trying to clean up the yard by Mow, Edge, and Rake.
-
-Do Example:
-
-    We are creating a tool to find all images that are in need of alt text in canvas 
-    which will automate this process by showing an image and prompting for alt text.
-
-Don't Example 2:
-
-    We are using yeoman to create a generator that will add all needed documentation and
-    set up the code with all needed scripts, templates, and integrations.
-
--->
-
+The program will take a list of Students and, using API calls, enroll them into the desired section of a course.
 
 -----
 
@@ -57,22 +24,62 @@ Don't Example 2:
 
 #### Source of Inputs
 
-<!-- Paragraph of how to get inputs. From who? From where: Slack, email, server...? This also includes user selected options at runtime. How will we know what options to select? For example, in conversion tool, you'd follow the values on the Trello Board. It would also include the steps to get access to the information you need, such as getting added to a Trello Board, or access to a server. -->
+Inputs would be given based on need and could come from a stakeholder directly or, for the initial problem, come from a Brightspace course's section. Input could come from a larger project implementing this tool as a module so long as it comes in the correct forms.
 
 #### Definition of Inputs
 
-<!-- List here a type definition for each input. For example, if it is a CSV define the column names. If it is a JSON, give an example of the JSON structure. If it is user input, what will the user be asked for? -->
+- **Canvas Course Section ID**: <_Section ID Number_>
+- **Students to be enrolled**: <_CSV File_>
+  ```csv
+  Student,SIS User ID,SIS Login ID
+  Alice Tryle,AliceTryle101,AliceTryle
+  Bob Tryle,BobTryle101,BobTryle
+  Charli Tryle,CharliTryle101,CharliTryle
+  David Tryle,DavidTryle101,DavidTryle
+  Eugene Tryle,EugeneTryle101,EugeneTryle
+  Faith Tryle,FaithTryle101,FaithTryle
+  Guy Tryle,GuyTryle101,GuyTryle
+  Hope Tryle,HopeTryle101,HopeTryle
+  Ima Tryle,ImaTryle101,ImaTryle
+
+  ```
+  Note: *SIS User ID is a student's I-Number*
 
 ---
 
 ### Output Requirements
 #### Destination
 
-<!-- Paragraph where/who to send outputs. To who? To where: Email, server, directly to LMS...? It would also include the steps to get access to the locations you need, such as getting added to a Trello Board, or access to a server, or the LMS. -->
+Students will be directly enrolled into Canvas and a report will be written to the current directory if specified. This report is purely for the developer to ensure that *unsuccessful enrollments* can be run through the program again, or enrolled by hand.
 
 #### Definition of Outputs
 
-<!-- List here a type definition for each output? For example, if the changes are directly to the LMS, list all changes that occur. If it is a CSV define the column names. If it is a JSON, give an example of the JSON structure. -->
+- **Output report**: <_JSON file_>
+  ```json
+  {
+      "success": [
+          {
+              "student": {
+                  "Student": "Ima Tryle",
+                  "SIS User ID": "ImaTryle101",
+                  "SIS Login ID": "ImaTryle"
+              },
+              "message": "Successful Enrollment"
+          }
+      ],
+      "failure": [
+          {
+              "student": {
+                  "Student": "Alice Tryle",
+                  "SIS User ID": "AliceTryle101",
+                  "SIS Login ID": "AliceTryle"
+              },
+              "err": "POST ... failed with: STATUS CODE ...",
+              "message": "Error Enrolling"
+          }
+      ]
+  }
+  ```
 
 ---
 
@@ -80,9 +87,7 @@ Don't Example 2:
 
 #### Type:
 
-<!-- CLI with Flags, CLI With Prompt, Web Page, Server, Library, etc -->
-
-<!-- What are the flags, what are Major Questions, Images of UX/UI Design. -->
+CLI (with args?).
 
 -----
 
@@ -102,5 +107,5 @@ Don't Example 2:
 
 -----
 
-#### *Approved By:* 
-#### *Approval Date:*
+#### *Approved By:* Aaron Shiffler
+#### *Approval Date:* 11 April 2019

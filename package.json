@@ -1,10 +1,12 @@
 {
   "name": "canvas-enroll-students",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A repo for enrolling a student or csv of students into a course",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .\\bin\\bin.js",
+    "version": "yo byui:release"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,11 @@
   },
   "homepage": "https://github.com/byuitechops/canvas-enroll-students#readme",
   "dependencies": {
-    "canvas-api-wrapper": "^3.3.5"
+    "async": "^2.6.2",
+    "canvas-api-wrapper": "^3.3.5",
+    "chalk": "^2.4.2",
+    "d3-dsv": "^1.1.1",
+    "inquirer": "^6.2.2",
+    "moment": "^2.24.0"
   }
 }
