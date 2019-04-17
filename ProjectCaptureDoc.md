@@ -28,7 +28,7 @@ Inputs would be given based on need and could come from a stakeholder directly o
 
 #### Definition of Inputs
 
-- **Canvas Course Section ID**: <_Course ID Number_>
+- **Canvas Course Section ID**: <_Section ID Number_>
 - **Students to be enrolled**: <_CSV File_>
   ```csv
   Student,SIS User ID,SIS Login ID
@@ -59,18 +59,23 @@ Students will be directly enrolled into Canvas and a report will be written to t
   {
       "success": [
           {
-            "user_id": "ImaTryle101",
-            "type": "StudentEnrollment",
-            "enrollment_state": "active",
-            "notify": false
+              "student": {
+                  "Student": "Ima Tryle",
+                  "SIS User ID": "ImaTryle101",
+                  "SIS Login ID": "ImaTryle"
+              },
+              "message": "Successful Enrollment"
           }
       ],
       "failure": [
           {
-            "user_id": "AliceTryle101",
-            "type": "StudentEnrollment",
-            "enrollment_state": "active",
-            "notify": false
+              "student": {
+                  "Student": "Alice Tryle",
+                  "SIS User ID": "AliceTryle101",
+                  "SIS Login ID": "AliceTryle"
+              },
+              "err": "POST ... failed with: STATUS CODE ...",
+              "message": "Error Enrolling"
           }
       ]
   }
